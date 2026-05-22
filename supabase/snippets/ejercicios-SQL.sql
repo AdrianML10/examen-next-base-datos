@@ -1,0 +1,31 @@
+-- create table cursos (
+-- id serial primary key,
+-- nombre text not null,
+-- presencial text not null,
+-- horas int not null,
+-- created_at timestamp default now()
+-- )
+
+-- create or replace function public.handle_new_user()
+-- returns trigger
+-- language plpgsql
+-- security definer
+-- as $$
+-- begin
+--   insert into public.perfiles (id, nombre, horas, created_at, modalidad)
+--   values (new.id, new.raw_user_meta_data->>'full_name');
+--   return new;
+-- end;
+-- $$;
+
+-- create trigger on_auth_user_created   
+-- after insert                      
+-- on auth.users                      
+-- for each row                         
+-- execute procedure public.handle_new_user();  
+
+-- create trigger on_auth_user_created   
+-- before insert                      
+-- on auth.users                      
+-- for each row                         
+-- execute procedure public.handle_new_user();  
